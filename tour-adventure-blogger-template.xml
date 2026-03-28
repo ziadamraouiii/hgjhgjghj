@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html b:version='2' class='no-js' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale'>
+  <head>
+    <meta charset='UTF-8'/>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+    <meta expr:content='data:blog.title' property='og:site_name'/>
+    <title><data:blog.pageName/> <b:if cond='data:blog.pageName'>|</b:if> <data:blog.title/></title>
+    <meta expr:content='data:blog.metaDescription' name='description'/>
+    <link expr:href='data:blog.homepageUrl.canonical' rel='canonical'/>
+    <link expr:href='data:blog.homepageUrl.canonical' rel='home'/>
+    <link href='https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap' rel='stylesheet'/>
+    <b:include data='blog' name='all-head-content'/>
+
+    <b:skin><![CDATA[
+/*
+  Tour & Adventure - Blogger Theme
+  Colors: Blue, Green, White with Orange accents
+  Features: Responsive, Dark Mode, RTL, SEO, Activities, Booking, Reviews
+*/
+
+:root {
+  --color-primary: #1565d8; /* blue */
+  --color-primary-ink: #0d47a1;
+  --color-accent: #ff7a00; /* orange */
+  --color-success: #28a745; /* green */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-1: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-2: 0 16px 40px rgba(2, 6, 23, 0.10);
+}
+
+html.dark {
+  --color-bg: #0b1220;
+  --color-surface: #0f172a;
+  --color-text: #e5e7eb;
+  --color-muted: #9ca3af;
+  --shadow-1: 0 8px 24px rgba(0,0,0,0.35);
+  --shadow-2: 0 16px 40px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Apple Color Emoji, Segoe UI Emoji;
+  background: var(--color-bg);
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+.container { width: 100%; max-width: 1200px; padding: 0 20px; margin: 0 auto; }
+.grid { display: grid; gap: 24px; }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+@media (max-width: 1024px) { .grid-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 900px) { .grid-3 { grid-template-columns: repeat(2, 1fr); } .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .grid-3, .grid-4 { grid-template-columns: 1fr; } }
+
+/* Top Navigation */
+.topbar {
+  position: sticky; top: 0; z-index: 50;
+  backdrop-filter: saturate(160%) blur(10px);
+  background: color-mix(in oklab, var(--color-surface) 80%, transparent);
+  border-bottom: 1px solid color-mix(in oklab, var(--color-muted) 15%, transparent);
+}
+.nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+.brand { display: flex; align-items: center; gap: 10px; font-weight: 800; }
+.brand .logo {
+  width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center;
+  background: linear-gradient(145deg, var(--color-primary), var(--color-primary-ink)); color: #fff;
+  box-shadow: var(--shadow-1);
+}
+.nav-links { display: flex; gap: 18px; align-items: center; }
+.nav-links a { font-weight: 600; color: var(--color-text); opacity: .9; }
+.nav-links a:hover { opacity: 1; color: var(--color-primary); }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.btn, button.btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; border: 1px solid transparent; font-weight: 700; cursor: pointer; }
+.btn-primary { background: var(--color-primary); color: #fff; }
+.btn-primary:hover { background: var(--color-primary-ink); }
+.icon-btn { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; border: 1px solid color-mix(in oklab, var(--color-muted) 25%, transparent); background: var(--color-surface); }
+.icon-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+/* Hero */
+.hero { padding: 40px 0 10px; }
+.hero .banner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 24px; align-items: center; }
+.hero .title { font-size: 40px; line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.02em; }
+.hero .subtitle { color: var(--color-muted); font-size: 18px; margin-bottom: 18px; }
+.hero .spot { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; background: color-mix(in oklab, var(--color-primary) 10%, transparent); color: var(--color-primary-ink); border-radius: 999px; font-weight: 700; }
+.hero .image { border-radius: 16px; overflow: hidden; box-shadow: var(--shadow-2); aspect-ratio: 16/10; }
+
+@media (max-width: 900px) { .hero .banner { grid-template-columns: 1fr; } .hero { padding-top: 20px; } }
+
+/* Cards */
+.card { border: 1px solid color-mix(in oklab, var(--color-muted) 18%, transparent); background: var(--color-surface); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-1); display: flex; flex-direction: column; }
+.card .thumb { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+.card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+.badge { position: absolute; top: 12px; left: 12px; background: #fff; color: #111827; border-radius: 999px; padding: 6px 10px; font-size: 12px; font-weight: 700; box-shadow: var(--shadow-1); }
+html.dark .badge { background: #111827; color: #e5e7eb; }
+.price-tag { position: absolute; right: 12px; bottom: 12px; background: var(--color-accent); color: #fff; border-radius: 999px; padding: 6px 10px; font-weight: 800; }
+.card .body { padding: 14px; display: grid; gap: 10px; }
+.card .title { font-size: 18px; font-weight: 800; margin: 0; }
+.card .meta { display: flex; align-items: center; justify-content: space-between; color: var(--color-muted); font-size: 13px; }
+
+/* Layout */
+.layout { display: grid; grid-template-columns: 1fr 320px; gap: 24px; padding: 24px 0; }
+@media (max-width: 1024px) { .layout { grid-template-columns: 1fr; } }
+
+/* Sidebar */
+.sidebar-card { border: 1px solid color-mix(in oklab, var(--color-muted) 18%, transparent); background: var(--color-surface); border-radius: var(--radius); padding: 16px; box-shadow: var(--shadow-1); }
+.sidebar-card h3 { margin: 0 0 12px; font-size: 16px; }
+.category-list, .suggest-list { display: grid; gap: 10px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: color-mix(in oklab, var(--color-primary) 10%, transparent); color: var(--color-primary-ink); font-weight: 700; width: max-content; }
+.search-box { display: flex; gap: 8px; }
+.search-box input { flex: 1; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--color-muted) 25%, transparent); background: var(--color-surface); padding: 10px 12px; color: var(--color-text); }
+
+/* Post */
+.post-header { display: grid; gap: 12px; margin: 10px 0 14px; }
+.post-title { font-size: 32px; letter-spacing: -0.02em; margin: 0; }
+.post-meta { color: var(--color-muted); font-size: 14px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.post-body { line-height: 1.75; font-size: 17px; }
+.post-body img { border-radius: 12px; }
+
+/* Activity Details */
+.activity-details { display: grid; gap: 12px; padding: 16px; border: 1px solid color-mix(in oklab, var(--color-muted) 18%, transparent); background: var(--color-surface); border-radius: var(--radius); box-shadow: var(--shadow-1); }
+.detail-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+@media (max-width: 640px) { .detail-grid { grid-template-columns: 1fr; } }
+.detail-item { background: color-mix(in oklab, var(--color-primary) 8%, transparent); border-radius: var(--radius-sm); padding: 12px; }
+.detail-item b { display: block; font-size: 13px; color: var(--color-muted); margin-bottom: 4px; }
+.stars { color: #fbbf24; }
+
+/* Booking Modal */
+.modal-backdrop { position: fixed; inset: 0; background: rgba(2,6,23,.55); display: none; align-items: center; justify-content: center; z-index: 60; }
+.modal { width: min(680px, 92vw); background: var(--color-surface); border-radius: 16px; box-shadow: var(--shadow-2); overflow: hidden; border: 1px solid color-mix(in oklab, var(--color-muted) 20%, transparent); }
+.modal header { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid color-mix(in oklab, var(--color-muted) 16%, transparent); }
+.modal .content { padding: 16px; display: grid; gap: 12px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 700; font-size: 13px; color: var(--color-muted); }
+.field input, .field select, .field textarea { border: 1px solid color-mix(in oklab, var(--color-muted) 25%, transparent); background: var(--color-surface); color: var(--color-text); border-radius: 12px; padding: 10px 12px; }
+.modal footer { padding: 12px 16px; display: flex; gap: 10px; justify-content: flex-end; background: color-mix(in oklab, var(--color-primary) 6%, transparent); }
+.modal .close { background: transparent; border: 1px solid color-mix(in oklab, var(--color-muted) 25%, transparent); }
+
+/* Footer */
+footer.site { margin-top: 30px; background: linear-gradient(180deg, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 30%), var(--color-surface); border-top: 1px solid color-mix(in oklab, var(--color-muted) 18%, transparent); }
+footer .wrap { padding: 26px 0; display: grid; gap: 18px; }
+footer .grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+footer h4 { margin: 0 0 10px; }
+footer a { color: var(--color-text); opacity: .85; }
+footer a:hover { opacity: 1; color: var(--color-primary); }
+.copyright { border-top: 1px solid color-mix(in oklab, var(--color-muted) 16%, transparent); padding: 12px 0; color: var(--color-muted); font-size: 14px; }
+
+/* Utilities */
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.muted { color: var(--color-muted); }
+.flex { display: flex; gap: 10px; align-items: center; }
+.justify-between { justify-content: space-between; }
+.section-title { display: flex; align-items: center; justify-content: space-between; margin: 18px 0 10px; }
+.section-title h2 { margin: 0; font-size: 22px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; border: 1px solid color-mix(in oklab, var(--color-muted) 25%, transparent); }
+.map-embed { width: 100%; aspect-ratio: 16/10; border: 0; border-radius: 12px; overflow: hidden; }
+
+/* RTL helpers */
+[dir='rtl'] .nav { flex-direction: row-reverse; }
+[dir='rtl'] .nav-links { flex-direction: row-reverse; }
+
+/* Blogger widgets cleanups */
+.blog-posts h3.post-title { font-size: 20px; }
+.blog-posts .post-outer { border: 1px solid color-mix(in oklab, var(--color-muted) 16%, transparent); background: var(--color-surface); border-radius: var(--radius); padding: 14px; box-shadow: var(--shadow-1); }
+
+    ]]></b:skin>
+
+    <script type='application/ld+json'>
+      {"@context":"https://schema.org","@type":"WebSite","url":"<data:blog.homepageUrl.canonical/>","name":"<data:blog.title/>","potentialAction":{"@type":"SearchAction","target":"<data:blog.homepageUrl.canonical/>search?q={search_term_string}","query-input":"required name=search_term_string"}}
+    </script>
+
+  </head>
+  <body>
+    <header class='topbar'>
+      <div class='container nav'>
+        <a class='brand' expr:href='data:blog.homepageUrl'>
+          <span class='logo' aria-hidden='true'>
+            <svg width='22' height='22' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M12 2L20.66 6.5V17.5L12 22L3.34 17.5V6.5L12 2Z' fill='white' fill-opacity='0.15'/>
+              <path d='M12 4L18.5 7.25V16.75L12 20L5.5 16.75V7.25L12 4Z' fill='white'/>
+            </svg>
+          </span>
+          <span><data:blog.title/></span>
+        </a>
+        <nav class='nav-links'>
+          <a expr:href='data:blog.homepageUrl'><b:eval expr='data:messages.homeText'>Home</b:eval></a>
+          <a expr:href='data:blog.homepageUrl + "search/label/Activities"'>Activities</a>
+          <a expr:href='data:blog.homepageUrl + "search/label/Tips"'>Tips</a>
+          <a expr:href='data:blog.pageUrl.About? data:blog.pageUrl.About : data:blog.homepageUrl + "p/about.html"'>About</a>
+          <a expr:href='data:blog.pageUrl.Contact? data:blog.pageUrl.Contact : data:blog.homepageUrl + "p/contact.html"'>Contact</a>
+        </nav>
+        <div class='nav-actions'>
+          <button class='icon-btn' id='themeToggle' title='Toggle theme' aria-label='Toggle theme'>
+            <svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
+              <path d='M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'/>
+            </svg>
+          </button>
+          <a href='#book' class='btn btn-primary' id='quickBook'>
+            <svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path d='M19 7v4H5V7h14m0-2H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h5v2H8v2h8v-2h-2v-2h5a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z'/></svg>
+            <span>Book</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main class='container'>
+      <!-- Hero + Featured (Homepage) -->
+      <b:if cond='data:blog.pageType == "index"'>
+        <section class='hero'>
+          <div class='banner'>
+            <div>
+              <span class='spot'>Your next adventure awaits</span>
+              <h1 class='title'>Discover epic experiences: climbing, skiing, camping, cycling, diving and more</h1>
+              <p class='subtitle'>Handpicked activities, real reviews, instant booking. Built for travelers, guides, and thrill-seekers.</p>
+              <div class='flex'>
+                <a class='btn btn-primary' expr:href='data:blog.homepageUrl + "search/label/Activities"'>Explore Activities</a>
+                <a class='pill' expr:href='data:blog.homepageUrl + "search/label/Tips"'>Travel Tips</a>
+              </div>
+            </div>
+            <div class='image'>
+              <img alt='Adventure collage' loading='lazy' src='https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1400&auto=format&fit=crop' />
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <div class='section-title'>
+            <h2>Featured Activities</h2>
+            <a class='pill' expr:href='data:blog.homepageUrl + "search/label/Activities"'>View all</a>
+          </div>
+          <div id='featuredActivities' class='grid grid-3'></div>
+        </section>
+
+        <section>
+          <div class='section-title'>
+            <h2>Latest Articles & Tips</h2>
+            <a class='pill' expr:href='data:blog.homepageUrl + "search/label/Tips"'>More tips</a>
+          </div>
+          <div id='latestPosts' class='grid grid-3'></div>
+        </section>
+      </b:if>
+
+      <!-- Listing + Sidebar (Index and Label pages) -->
+      <b:if cond='data:blog.pageType != "item"'>
+        <section class='layout'>
+          <div>
+            <b:section id='main' class='main' showaddelement='yes'>
+              <b:widget id='Blog1' locked='true' title='Posts' type='Blog'>
+                <b:widget-settings>
+                  <b:widget-setting name='displayImages'>true</b:widget-setting>
+                  <b:widget-setting name='showDateHeader'>true</b:widget-setting>
+                  <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+                  <b:widget-setting name='showLabels'>true</b:widget-setting>
+                  <b:widget-setting name='showAuthor'>false</b:widget-setting>
+                  <b:widget-setting name='showLocation'>false</b:widget-setting>
+                  <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+                  <b:widget-setting name='showPostSummary'>true</b:widget-setting>
+                  <b:widget-setting name='postsPerAd'>0</b:widget-setting>
+                  <b:widget-setting name='postSummaryLength'>180</b:widget-setting>
+                </b:widget-settings>
+                <b:includable id='main'>
+                  <b:include name='widget-title'/>
+                  <div class='blog-posts hfeed container'>
+                    <b:loop values='data:posts' var='post'>
+                      <div class='post-outer'>
+                        <h3 class='post-title entry-title'>
+                          <a expr:href='data:post.url'><data:post.title/></a>
+                        </h3>
+                        <div class='post-header post-meta'>
+                          <span><data:post.dateHeader/></span>
+                          <b:if cond='data:post.labels'>
+                            <span>•</span>
+                            <span>
+                              <b:loop values='data:post.labels' var='label'>
+                                <a class='chip' expr:href='data:label.url'><data:label.name/></a>
+                              </b:loop>
+                            </span>
+                          </b:if>
+                        </div>
+                        <b:if cond='data:post.firstImageUrl'>
+                          <div class='thumb' style='margin: 10px 0;'>
+                            <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl' loading='lazy'/>
+                          </div>
+                        </b:if>
+                        <div class='post-snippet'>
+                          <data:post.snippet/>
+                        </div>
+                        <div class='flex justify-between' style='margin-top: 10px;'>
+                          <a class='pill' expr:href='data:post.url'>Read more</a>
+                          <div class='flex'>
+                            <b:if cond='data:post.shareUrl'>
+                              <a class='icon-btn' expr:href='"https://www.facebook.com/sharer/sharer.php?u=" + data:post.shareUrl' target='_blank' rel='noopener' title='Share on Facebook' aria-label='Share on Facebook'>
+                                <svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path d='M22 12a10 10 0 1 0-11.5 9.9v-7H8v-3h2.5V9.5A3.5 3.5 0 0 1 14 6h3v3h-3c-.3 0-1 .2-1 1V12h4l-.6 3H13v7A10 10 0 0 0 22 12z'/></svg>
+                              </a>
+                              <a class='icon-btn' expr:href='"https://twitter.com/intent/tweet?url=" + data:post.shareUrl + "&text=" + data:post.title' target='_blank' rel='noopener' title='Share on X' aria-label='Share on X'>
+                                <svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path d='M3 3h4.6l5.2 7.2L18.8 3H23l-8.1 9.4L23 21h-4.7l-6-8.2L6.2 21H1l8.6-9.9L3 3Z'/></svg>
+                              </a>
+                            </b:if>
+                          </div>
+                        </div>
+                      </div>
+                    </b:loop>
+                  </div>
+                  <b:include name='nextprev'/>
+                </b:includable>
+              </b:widget>
+            </b:section>
+          </div>
+          <aside>
+            <div class='sidebar-card'>
+              <h3>Search</h3>
+              <div class='search-box'>
+                <input id='qsearch' placeholder='Find activities, tips...' type='search' onkeypress='if(event.key==="Enter"){location.href="<data:blog.homepageUrl.canonical/>search?q="+encodeURIComponent(this.value)}'/>
+                <button class='icon-btn' onclick='(function(){var v=document.getElementById("qsearch").value; location.href="<data:blog.homepageUrl.canonical/>search?q="+encodeURIComponent(v)})()' aria-label='Search'>
+                  <svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'><path d='M15.5 14h-.8l-.3-.3A6.5 6.5 0 1 0 14 15.5l.3.3v.8L20 22l2-2-6.5-6zM10 15a5 5 0 1 1 0-10 5 5 0 0 1 0 10z'/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class='sidebar-card'>
+              <h3>Activity Categories</h3>
+              <div class='category-list' id='categoryList'>
+                <!-- Filled by JS: climbing, skiing, water adventures, mountain trips, etc. -->
+              </div>
+            </div>
+
+            <div class='sidebar-card'>
+              <h3>Suggested Activities</h3>
+              <div class='suggest-list' id='suggestActivities'></div>
+            </div>
+
+            <b:section id='sidebar' class='sidebar' showaddelement='yes'>
+              <b:widget id='Label1' type='Label' title='Labels' locked='false'/>
+            </b:section>
+          </aside>
+        </section>
+      </b:if>
+
+      <!-- Activity Details (Item page) -->
+      <b:if cond='data:blog.pageType == "item"'>
+        <article class='post'>
+          <header class='post-header'>
+            <h1 class='post-title'><data:post.title/></h1>
+            <div class='post-meta'>
+              <span><data:post.dateHeader/></span>
+              <b:if cond='data:post.labels'>
+                <span>•</span>
+                <span>
+                  <b:loop values='data:post.labels' var='label'>
+                    <a class='chip' expr:href='data:label.url'><data:label.name/></a>
+                  </b:loop>
+                </span>
+              </b:if>
+            </div>
+          </header>
+
+          <b:if cond='data:post.firstImageUrl'>
+            <div class='thumb' style='border-radius: 16px; overflow:hidden; margin-bottom: 14px;'>
+              <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl' loading='lazy'/>
+            </div>
+          </b:if>
+
+          <section class='activity-details' id='activityDetails' data-rating=''>
+            <div class='detail-grid'>
+              <div class='detail-item'><b>Location</b><span id='ad-location'>—</span></div>
+              <div class='detail-item'><b>Price</b><span id='ad-price'>—</span></div>
+              <div class='detail-item'><b>Duration</b><span id='ad-duration'>—</span></div>
+              <div class='detail-item'><b>Difficulty</b><span id='ad-difficulty'>—</span></div>
+            </div>
+            <div class='flex justify-between' style='margin-top: 6px;'>
+              <div class='flex'>
+                <span class='stars' id='ad-stars' title='Average rating'>★★★★★</span>
+                <span class='muted' id='ad-rating-text' style='margin-inline-start:8px'>(No reviews yet)</span>
+              </div>
+              <div class='flex'>
+                <a class='pill' expr:href='"https://www.facebook.com/sharer/sharer.php?u=" + data:post.shareUrl' target='_blank' rel='noopener'>Share</a>
+                <a class='btn btn-primary' href='#book' id='bookNow'>Book Now</a>
+              </div>
+            </div>
+          </section>
+
+          <section class='post-body'>
+            <data:post.body/>
+          </section>
+
+          <section style='margin-top:14px'>
+            <div class='section-title'>
+              <h2>Location Map</h2>
+            </div>
+            <iframe class='map-embed' id='mapEmbed' loading='lazy' allowfullscreen referrerpolicy='no-referrer-when-downgrade'></iframe>
+          </section>
+
+          <section style='margin-top:20px'>
+            <div class='section-title'><h2>Reviews</h2><span class='muted'>Share your experience</span></div>
+            <div class='muted' style='margin-bottom:8px'>Tip: Include text like "Rating: 5" at the start of your comment to rate this activity.</div>
+            <b:include data='post' name='comments'/>
+          </section>
+        </article>
+      </b:if>
+    </main>
+
+    <footer class='site'>
+      <div class='container wrap'>
+        <div class='grid'>
+          <div>
+            <div class='brand'>
+              <span class='logo' aria-hidden='true'>
+                <svg width='22' height='22' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                  <path d='M12 2L20.66 6.5V17.5L12 22L3.34 17.5V6.5L12 2Z' fill='white' fill-opacity='0.15'/>
+                  <path d='M12 4L18.5 7.25V16.75L12 20L5.5 16.75V7.25L12 4Z' fill='white'/>
+                </svg>
+              </span>
+              <span><data:blog.title/></span>
+            </div>
+            <p class='muted'>Explore the world with curated experiences across land, water, and mountains. Book safely and travel smart.</p>
+          </div>
+          <div>
+            <h4>Explore</h4>
+            <div class='grid'>
+              <a expr:href='data:blog.homepageUrl + "search/label/Activities"'>Activities</a>
+              <a expr:href='data:blog.homepageUrl + "search/label/Tips"'>Tips</a>
+              <a expr:href='data:blog.homepageUrl + "search/label/News"'>News</a>
+              <a expr:href='data:blog.homepageUrl + "search/label/Experiences"'>Experiences</a>
+            </div>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <div class='grid'>
+              <a expr:href='data:blog.homepageUrl + "p/about.html"'>About</a>
+              <a expr:href='data:blog.homepageUrl + "p/contact.html"'>Contact</a>
+              <a expr:href='data:blog.homepageUrl + "p/faq.html"'>FAQ</a>
+              <a expr:href='data:blog.homepageUrl + "p/terms.html"'>Terms</a>
+            </div>
+          </div>
+          <div>
+            <h4>Follow</h4>
+            <div class='flex'>
+              <a class='icon-btn' href='https://facebook.com' target='_blank' rel='noopener' aria-label='Facebook'>F</a>
+              <a class='icon-btn' href='https://instagram.com' target='_blank' rel='noopener' aria-label='Instagram'>I</a>
+              <a class='icon-btn' href='https://x.com' target='_blank' rel='noopener' aria-label='X'>X</a>
+              <a class='icon-btn' href='https://youtube.com' target='_blank' rel='noopener' aria-label='YouTube'>Y</a>
+            </div>
+          </div>
+        </div>
+        <div class='copyright'>
+          <div class='flex justify-between'>
+            <span>© <data:blog.title/> <data:blog.localizedDate/></span>
+            <span class='muted'>Made for travelers • Fast • Responsive • SEO-Ready</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class='modal-backdrop' id='bookingModal' role='dialog' aria-modal='true' aria-labelledby='bookingTitle'>
+      <div class='modal'>
+        <header>
+          <h3 id='bookingTitle'>Book Activity</h3>
+          <button class='icon-btn close' type='button' aria-label='Close booking' onclick='toggleBooking(false)'>✕</button>
+        </header>
+        <form id='bookingForm' class='content' method='POST' action='https://formspree.io/f/your-id'>
+          <input type='hidden' name='activity' id='bookingActivity'/>
+          <div class='form-grid'>
+            <div class='field'>
+              <label for='name'>Full name</label>
+              <input id='name' name='name' required placeholder='Your full name'/>
+            </div>
+            <div class='field'>
+              <label for='email'>Email</label>
+              <input id='email' name='email' type='email' required placeholder='you@example.com'/>
+            </div>
+            <div class='field'>
+              <label for='phone'>Phone</label>
+              <input id='phone' name='phone' type='tel' placeholder='+1 555 000 0000'/>
+            </div>
+            <div class='field'>
+              <label for='date'>Preferred date</label>
+              <input id='date' name='date' type='date' required/>
+            </div>
+            <div class='field'>
+              <label for='people'>People</label>
+              <select id='people' name='people'>
+                <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+              </select>
+            </div>
+            <div class='field'>
+              <label for='notes'>Notes</label>
+              <textarea id='notes' name='notes' rows='3' placeholder='Any special requests?'></textarea>
+            </div>
+          </div>
+          <footer>
+            <button class='btn close' type='button' onclick='toggleBooking(false)'>Cancel</button>
+            <button class='btn btn-primary' type='submit'>Confirm Booking</button>
+          </footer>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Theme toggle with persistence
+      (function() {
+        var root = document.documentElement;
+        var pref = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        if (pref === 'dark') root.classList.add('dark');
+        var btn = document.getElementById('themeToggle');
+        if (btn) btn.addEventListener('click', function() {
+          root.classList.toggle('dark');
+          localStorage.setItem('theme', root.classList.contains('dark') ? 'dark' : 'light');
+        });
+      })();
+
+      // Booking modal controls
+      function toggleBooking(show) {
+        var m = document.getElementById('bookingModal');
+        if (!m) return;
+        m.style.display = show ? 'flex' : 'none';
+        document.body.style.overflow = show ? 'hidden' : '';
+      }
+      (function(){
+        var qb = document.getElementById('quickBook');
+        if (qb) qb.addEventListener('click', function(e){ e.preventDefault(); setBookingActivity(); toggleBooking(true); });
+        var bn = document.getElementById('bookNow');
+        if (bn) bn.addEventListener('click', function(e){ e.preventDefault(); setBookingActivity(); toggleBooking(true); });
+        document.addEventListener('keydown', function(e){ if(e.key==='Escape') toggleBooking(false); });
+      })();
+      function setBookingActivity(){
+        var t = (document.querySelector('.post-title')||{}).textContent || document.title;
+        var input = document.getElementById('bookingActivity');
+        if (input) input.value = t.trim();
+        var h = document.getElementById('bookingTitle');
+        if (h) h.textContent = 'Book: ' + t.trim();
+      }
+
+      // Helper to create star text
+      function starsFromRating(r){
+        r = Math.max(0, Math.min(5, Number(r)||0));
+        var full = Math.floor(r), half = r - full >= 0.5 ? 1 : 0, empty = 5 - full - half;
+        return '★★★★★'.slice(0, full) + (half? '☆' : '') + '☆☆☆☆'.slice(0, empty);
+      }
+
+      // Extract activity meta from post body using shortcodes like [price: 120], [location: Chamonix]
+      (function(){
+        if (document.body.classList.contains('item-view') || window.location.pathname.indexOf('/p/') === -1) {
+          var bodyEl = document.querySelector('.post-body');
+          var metaBox = document.getElementById('activityDetails');
+          if (!bodyEl || !metaBox) return;
+          var html = bodyEl.innerHTML;
+          function pick(key){
+            var re = new RegExp('\\[' + key + '\\s*:\\s*([^\\\\\n\\]]+)', 'i');
+            var m = html.match(re); return m? m[1].trim() : '';
+          }
+          var price = pick('price');
+          var locationTxt = pick('location');
+          var duration = pick('duration');
+          var difficulty = pick('difficulty');
+          var rating = pick('rating');
+          var coords = pick('coordinates'); // lat,lng
+          if (price) document.getElementById('ad-price').textContent = price;
+          if (locationTxt) document.getElementById('ad-location').textContent = locationTxt;
+          if (duration) document.getElementById('ad-duration').textContent = duration;
+          if (difficulty) document.getElementById('ad-difficulty').textContent = difficulty;
+          var starEl = document.getElementById('ad-stars');
+          var rTxt = document.getElementById('ad-rating-text');
+          if (rating) {
+            starEl.textContent = starsFromRating(rating);
+            rTxt.textContent = '(' + Number(rating).toFixed(1) + ' / 5)';
+            metaBox.setAttribute('data-rating', String(Number(rating).toFixed(1)));
+          }
+          // Map
+          var map = document.getElementById('mapEmbed');
+          if (map && coords) {
+            var parts = coords.split(',');
+            var lat = (parts[0]||'').trim(); var lng = (parts[1]||'').trim();
+            if (lat && lng) {
+              var q = encodeURIComponent(lat + ',' + lng + ' ' + (locationTxt||''));
+              map.src = 'https://www.google.com/maps?q=' + q + '&output=embed';
+            }
+          }
+          // Inject JSON-LD for Activity
+          try {
+            var title = (document.querySelector('.post-title')||{}).textContent || '';
+            var img = (document.querySelector('.thumb img')||{}).src || '';
+            var ld = {
+              '@context': 'https://schema.org',
+              '@type': 'TouristTrip',
+              'name': title,
+              'image': img ? [img] : undefined,
+              'description': (bodyEl.textContent||'').slice(0, 300),
+              'offers': price ? { '@type':'Offer', 'price': String(price).replace(/[^0-9.]/g,''), 'priceCurrency':'USD', 'url': location.href } : undefined,
+              'brand': { '@type':'Brand', 'name': document.title.replace(/\|.*/, '').trim() },
+              'aggregateRating': rating ? { '@type':'AggregateRating', 'ratingValue': Number(rating), 'reviewCount': 1 } : undefined,
+              'touristType': (function(){
+                var chips = document.querySelectorAll('.post-meta a.chip');
+                var arr = []; chips.forEach(function(c){ arr.push(c.textContent.trim()); });
+                return arr;
+              })()
+            };
+            var s = document.createElement('script'); s.type = 'application/ld+json'; s.textContent = JSON.stringify(ld);
+            document.head.appendChild(s);
+          } catch(e) {}
+        }
+      })();
+
+      // Compute rating from comments containing "Rating: X"
+      (function(){
+        function parse(){
+          var items = document.querySelectorAll('#comments .comment, #comments .comment-content, .comments .comment');
+          if (!items.length) return;
+          var sum=0,count=0;
+          items.forEach(function(el){
+            var text = el.textContent || '';
+            var m = text.match(/Rating\s*:\s*(\d(?:\.\d)?)/i);
+            if (m) { sum += Number(m[1]); count++; }
+          });
+          if (count>0) {
+            var avg = (sum/count).toFixed(1);
+            var starEl = document.getElementById('ad-stars');
+            var rTxt = document.getElementById('ad-rating-text');
+            if (starEl) starEl.textContent = starsFromRating(avg);
+            if (rTxt) rTxt.textContent = '('+avg+' / 5 • '+count+' reviews)';
+            var metaBox = document.getElementById('activityDetails');
+            if (metaBox) metaBox.setAttribute('data-rating', avg);
+          }
+        }
+        if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', parse); else parse();
+      })();
+
+      // Homepage data: Featured activities (label: Activities + Featured) and latest posts (label: Tips)
+      (function(){
+        if (!(document.body.classList.contains('index-view') || document.body.classList.contains('homepage'))) return;
+        var base = document.querySelector('link[rel=canonical]') ? document.querySelector('link[rel=canonical]').href.replace(/\/[^/]*$/, '/') : '/';
+        function feed(url, cb){ fetch(url).then(function(r){ return r.json(); }).then(cb).catch(function(){}); }
+        function card(entry){
+          var title = entry.title.$t;
+          var link = (entry.link||[]).filter(function(l){ return l.rel==='alternate'; })[0].href;
+          var media = '';
+          try { media = entry.media$thumbnail ? entry.media$thumbnail.url.replace(/\/s72-c/,'/s800') : ''; } catch(e) {}
+          var content = entry.summary ? entry.summary.$t : '';
+          var price = (content.match(/\[price\s*:\s*([^\]]+)/i)||[])[1]||'';
+          var label = (entry.category||[])[0] ? entry.category[0].term : 'Activity';
+          return "<article class='card'>"+
+            "<a class='thumb' href='"+link+"'>"+
+            (media?"<img loading='lazy' alt='"+title.replace(/'/g,"&apos;")+"' src='"+media+"'>":"")+
+            "<span class='badge'>"+label+"</span>"+
+            (price?"<span class='price-tag'>"+price+"</span>":"")+
+            "</a>"+
+            "<div class='body'>"+
+              "<h3 class='title'><a href='"+link+"'>"+title+"</a></h3>"+
+              "<div class='meta'><span>"+(new Date(entry.published.$t).toLocaleDateString())+"</span><a class='pill' href='"+link+"#book'>Book</a></div>"+
+            "</div>"+
+          "</article>";
+        }
+        var featured = document.getElementById('featuredActivities');
+        if (featured) {
+          var u = base + 'feeds/posts/summary/-/Activities/-/Featured?alt=json&max-results=6';
+          feed(u, function(data){
+            try { var entries = data.feed.entry||[]; featured.innerHTML = entries.map(card).join(''); } catch(e) {}
+          });
+        }
+        var latest = document.getElementById('latestPosts');
+        if (latest) {
+          var u2 = base + 'feeds/posts/summary?alt=json&max-results=6';
+          feed(u2, function(data){
+            try { var entries = data.feed.entry||[]; latest.innerHTML = entries.map(card).join(''); } catch(e) {}
+          });
+        }
+        // Categories + Suggestions
+        var catList = document.getElementById('categoryList');
+        var sugg = document.getElementById('suggestActivities');
+        var u3 = base + 'feeds/posts/summary?alt=json&max-results=0';
+        feed(u3, function(data){
+          try {
+            var seen = {};
+            (data.feed.entry||[]).forEach(function(e){ (e.category||[]).forEach(function(c){ seen[c.term] = (seen[c.term]||0) + 1; }); });
+            var order = ['Climbing','Skiing','Camping','Cycling','Diving','Water Adventures','Mountain Trips'];
+            var keys = Object.keys(seen).sort(function(a,b){ var ia=order.indexOf(a), ib=order.indexOf(b); return (ia===-1?999:ia)-(ib===-1?999:ib) || seen[b]-seen[a]; });
+            if (catList) catList.innerHTML = keys.slice(0, 12).map(function(k){ var href = base+'search/label/'+encodeURIComponent(k); return "<a class='chip' href='"+href+"'>"+k+"</a>"; }).join('');
+          } catch(e) {}
+        });
+        // Suggestions: random activities
+        var u4 = base + 'feeds/posts/summary/-/Activities?alt=json&max-results=6';
+        feed(u4, function(data){
+          try {
+            var entries = (data.feed.entry||[]).sort(function(){ return Math.random()-0.5; }).slice(0, 4);
+            sugg.innerHTML = entries.map(function(e){
+              var link = (e.link||[]).filter(function(l){ return l.rel==='alternate'; })[0].href;
+              var title = e.title.$t; var media = e.media$thumbnail ? e.media$thumbnail.url.replace(/\/s72-c/,'/s300') : '';
+              return "<a class='flex' href='"+link+"'>"+(media?"<img src='"+media+"' width='64' height='64' style='border-radius:10px;object-fit:cover'>":"")+"<span>"+title+"</span></a>";
+            }).join('');
+          } catch(e) {}
+        });
+      })();
+    </script>
+  </body>
+</html>
+
